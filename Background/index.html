@@ -1,50 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Synthwave Rain ✨</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Honk&family=Rajdhani:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Falling Kana Columns</title>
   <style>
-    .walls {
-      height: 100vh;
-      width: 100vw;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10vw; 
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: monospace;
     }
-    .fade-out {
-      opacity: 1;
-      transition: opacity 2s ease;
-    }
-    .fade-out.fading {
-      opacity: 0;
+    body, html {
+      height: 100%;
+      background: black;
+      overflow: hidden;
+      color: #0f0;
     }
 
-    .side-wall {
-      width: 25vw;  
+    .walls {
+      display: flex;
       height: 100vh;
-      overflow: hidden;
+      width: 100vw;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1rem;
+      pointer-events: none; /* avoid interaction */
+    }
+
+    /* Left and right wall containers */
+    .left-wall, .right-wall {
       position: relative;
-      perspective: 800px;
+      width: 8rem; /* width for columns area */
+      height: 100%;
+      overflow: visible;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      flex-direction: row;
+      justify-content: center;
+      align-content: flex-start;
+    }
+
+    /* Each falling column */
+    .column {
+      position: relative;
+      width: 1.5rem;
+      height: 100vh;
+      user-select: none;
+      opacity: 1;
+      /* fade out animation */
+      animation: fadeOut 2s ease forwards;
+      animation-delay: 1.5s;
+    }
+    .column.fading {
+      animation-play-state: running;
+    }
+
+    /* Each variant inside column */
+    .variant {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-duration: calc(6s + 4s * var(--r0, 0.5));
+      animation-delay: calc(-10s * var(--r1, 0.3));
+      color: #0f0;
+      filter: drop-shadow(0 0 2px #0f0);
+    }
+    .variant:nth-child(2) {
+      animation-duration: calc(6s + 4s * var(--r1, 0.7));
+      animation-delay: calc(-8s * var(--r2, 0.8));
+      color: #0a0;
+      filter: drop-shadow(0 0 4px #0a0);
+    }
+
+    /* The falling drops */
+    .drop {
+      font-size: 1.3rem;
+      line-height: 1.3rem;
+      user-select: none;
+      text-shadow:
+        0 0 5px #0f0,
+        0 0 10px #0f0;
+    }
+
+    /* Animations */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100%);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="walls">
-    <div class="side-wall left-wall"></div>
-    <div class="side-wall right-wall"></div>
+    <div class="left-wall"></div>
+    <div class="right-wall"></div>
   </div>
 
   <script>
     const kanas = ['ﾆ','ﾜ','ﾒ','ｼ','ｻ','ﾘ','ｳ','ﾗ','ｵ','ｴ','ｱ','ｾ','ﾊ','ｹ','ｰ','ﾃ','ｷ','ﾋ','ﾍ','ﾑ','ﾕ','ｽ','ﾏ'];
-    const numColumnsPerSide = 8;  // fewer columns per side
+    const numColumnsPerSide = 8;  // Max columns per side
     const dropsPerVariant = 15;
     const variantsPerColumn = 2;
 
@@ -52,9 +128,9 @@
       return +(Math.random().toFixed(10));
     }
 
-    function spawnColumn(columnIndex) {
+    function spawnColumn() {
       const column = document.createElement('div');
-      column.className = 'column fade-out';
+      column.className = 'column';
       column.style.setProperty('--r0', randDec());
       column.style.setProperty('--r1', randDec());
       column.style.setProperty('--r2', randDec());
@@ -73,31 +149,34 @@
         column.appendChild(variant);
       }
 
+      // Fade out start after 1.5 seconds
       setTimeout(() => {
         column.classList.add('fading');
       }, 1500);
 
+      // Remove column after fade out finishes (~3.5s total)
+      setTimeout(() => {
+        column.remove();
+      }, 3500);
+
       return column;
     }
-
-    function createWall(sideWallElem, wallIndex) {
-      for (let i = 0; i < numColumnsPerSide; i++) {
-        const column = spawnColumn(i);
- 
-        column.style.setProperty('--r0', randDec());
-        column.style.setProperty('--r1', randDec());
-        column.style.setProperty('--r2', randDec());
-        sideWallElem.appendChild(column);
-      }
-    }
-
 
     const leftWall = document.querySelector('.left-wall');
     const rightWall = document.querySelector('.right-wall');
 
-    createWall(leftWall, 1);
-    createWall(rightWall, 2);
+    // Spawn columns repeatedly with a max limit
+    function startSpawning(wall) {
+      setInterval(() => {
+        if (wall.children.length < numColumnsPerSide) {
+          const col = spawnColumn();
+          wall.appendChild(col);
+        }
+      }, 1200); // every 1.2 seconds
+    }
 
+    startSpawning(leftWall);
+    startSpawning(rightWall);
   </script>
 </body>
 </html>
