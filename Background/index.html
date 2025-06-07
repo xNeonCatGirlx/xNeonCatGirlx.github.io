@@ -15,6 +15,13 @@
       position: relative;
       overflow: hidden;
     }
+    .fade-out {
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+    .fade-out.done {
+      opacity: 0;
+    }
   </style>
 </head>
 <body>
@@ -27,6 +34,7 @@
     const dropsPerVariant = 15;
     const variantsPerColumn = 2;
     const maxColumnsPerWall = 20;
+    const maxVisibleTime = 3000; // milliseconds
 
     function randDec() {
       return +(Math.random().toFixed(10));
@@ -34,7 +42,7 @@
 
     function spawnColumn(columnIndex) {
       const column = document.createElement('div');
-      column.className = 'column';
+      column.className = 'column fade-out';
       column.style.setProperty('--r0', randDec());
       column.style.setProperty('--r1', randDec());
       column.style.setProperty('--r2', randDec());
@@ -52,6 +60,12 @@
 
         column.appendChild(variant);
       }
+
+      // Start timer to fade and remove
+      setTimeout(() => {
+        column.classList.add('done');
+        setTimeout(() => column.remove(), 500);
+      }, maxVisibleTime);
 
       return column;
     }
@@ -71,19 +85,14 @@
       walls.appendChild(wall);
     }
 
-    // Gradually add new columns at interval (fade management)
+    // Add new columns only if under limit
     setInterval(() => {
       document.querySelectorAll('.wall').forEach(wall => {
         if (wall.children.length < maxColumnsPerWall) {
-          const column = spawnColumn();
-          wall.appendChild(column);
-        } else {
-          wall.removeChild(wall.firstElementChild);
-          const column = spawnColumn();
-          wall.appendChild(column);
+          wall.appendChild(spawnColumn());
         }
       });
-    }, 2000); // every 2 seconds
+    }, 1000); // every 1 second
   </script>
 </body>
 </html>
