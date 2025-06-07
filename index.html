@@ -8,12 +8,24 @@
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
 
   <style>
-    /* Remove margin and padding, disable scroll, full viewport height */
+
+    #background-iframe {
+    position: fixed;  /* fixed position */
+    top: 0;
+    left: 0;
+    width: 100vw;    /* full viewport width */
+    height: 100vh;   /* full viewport height */
+    border: none;
+    z-index: -1;     /* behind all content */
+    pointer-events: none; /* make clicks go through iframe */
+}
+
+    
     html, body {
       margin: 0;
       padding: 0;
       height: 100vh;
-      overflow: hidden; /* disable scroll */
+      overflow: hidden; 
       font-family: 'Segoe UI', sans-serif;
       background-size: cover;
       background-position: center;
@@ -26,7 +38,7 @@
       justify-content: space-between;
     }
 
-    /* Rotating text fixed to top center */
+
     .rotating-text {
       font-size: 2rem;
       font-weight: bold;
@@ -62,7 +74,7 @@
       100% { opacity: 0; }
     }
 
-    /* Bottom-right links fixed */
+
     .bottom-right-links {
       position: fixed;
       bottom: 10px;
@@ -86,7 +98,7 @@
       text-decoration: underline;
     }
 
-    /* Counter container near bottom, centered horizontally */
+
     .counter-container {
       position: fixed;
       bottom: 50px;
@@ -112,6 +124,8 @@
     <span>Counter</span>
     <span>Placeholder</span>
   </div>
+
+  <iframe src="Background/index.html" id="background-iframe"></iframe>
 
   <div class="counter-container">
     <iframe 
