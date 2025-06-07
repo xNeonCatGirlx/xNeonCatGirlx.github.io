@@ -5,6 +5,19 @@
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+   <script>
+  const wallpapers = [
+    "https://wallpapercave.com/wp/wp5128415.jpg",
+    "https://images.unsplash.com/photo-1587502536263-3f1d82f31787",
+  ];
+
+  const randomWallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
+  document.body.style.backgroundImage = `url('${randomWallpaper}')`;
+  document.body.style.backgroundSize = "cover";
+  document.body.style.backgroundPosition = "center";
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundAttachment = "fixed";
+</script>
     html, body {
       margin: 0;
       padding: 0;
