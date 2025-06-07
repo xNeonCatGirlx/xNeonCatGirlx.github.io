@@ -1,4 +1,4 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,51 +8,37 @@
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
 
   <style>
+    /* Remove margin and padding, disable scroll, full viewport height */
     html, body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; 
-      align-items: center;
-      height: 100vh; 
       margin: 0;
       padding: 0;
+      height: 100vh;
+      overflow: hidden; /* disable scroll */
       font-family: 'Segoe UI', sans-serif;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
-}
-    .bottom-right-links {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      font-size: 0.9rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 6px 10px;
-      border-radius: 8px;
-      color: white;
-}
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .bottom-right-links a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 4px;
-}
-
-    .bottom-right-links a:hover {
-      text-decoration: underline;
-}
-
-
+    /* Rotating text fixed to top center */
     .rotating-text {
       font-size: 2rem;
       font-weight: bold;
       height: 2.5rem;
       width: 12rem;
       overflow: hidden;
-      position: relative;
-      margin-bottom: 1rem;
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-bottom: 0;
+      z-index: 1000;
     }
 
     .rotating-text span {
@@ -76,16 +62,47 @@
       100% { opacity: 0; }
     }
 
+    /* Bottom-right links fixed */
+    .bottom-right-links {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: white;
+      user-select: none;
+      z-index: 1000;
+    }
+
+    .bottom-right-links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+
+    .bottom-right-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Counter container near bottom, centered horizontally */
     .counter-container {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
       background-color: transparent;
       padding: 0;
-      backdrop-filter: none;
       border-radius: 0;
+      z-index: 900;
     }
 
     iframe {
       border: none;
       transform: scale(1.8);
+      transform-origin: center;
+      display: block;
     }
   </style>
 </head>
@@ -96,17 +113,17 @@
     <span>Placeholder</span>
   </div>
 
-  <div class="bottom-right-links">
-    <a href="https://github.com/xNeonCatGirlx" target="_blank">GitHub</a> |
-    <a href="https://count.getloli.com" target="_blank">Moe Counter</a>
-  </div>
-
-
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
-      height="60" width="300">
+      height="60" width="300" 
+      title="Moe Counter">
     </iframe>
+  </div>
+
+  <div class="bottom-right-links">
+    <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
+    <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
   <script>
