@@ -16,7 +16,7 @@
       overflow: hidden;
       display: flex;
       justify-content: space-between;
-      padding: 0 10vw; /* 10% padding on left and right */
+      padding: 0 10vw; 
       box-sizing: border-box;
     }
     .fade-out {
@@ -26,9 +26,9 @@
     .fade-out.fading {
       opacity: 0;
     }
-    /* Container for left and right walls */
+
     .side-wall {
-      width: 25vw;  /* each side takes 25% of viewport width */
+      width: 25vw;  
       height: 100vh;
       overflow: hidden;
       position: relative;
@@ -83,7 +83,7 @@
     function createWall(sideWallElem, wallIndex) {
       for (let i = 0; i < numColumnsPerSide; i++) {
         const column = spawnColumn(i);
-        // Set custom properties for animation randomness
+ 
         column.style.setProperty('--r0', randDec());
         column.style.setProperty('--r1', randDec());
         column.style.setProperty('--r2', randDec());
@@ -91,7 +91,7 @@
       }
     }
 
-    // Select left and right walls
+
     const leftWall = document.querySelector('.left-wall');
     const rightWall = document.querySelector('.right-wall');
 
