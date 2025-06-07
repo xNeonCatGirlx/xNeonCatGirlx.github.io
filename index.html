@@ -60,14 +60,15 @@
     }
 
     .counter-container {
-    position: relative;
-    z-index: 900;
-    overflow: visible; /* ensure iframe scaling doesn't clip */
-}
+      position: relative;
+      z-index: 900;
+      overflow: visible; /* ensure iframe scaling doesn't clip */
+    }
 
     iframe {
       border: none;
       transform: scale(1.8);
+      transform-origin: center; /* scale from center */
     }
 
     /* Bottom right links container */
@@ -105,33 +106,37 @@
     .resources-wrapper {
       position: relative;
       cursor: pointer;
+      user-select: none;
     }
 
     .resources-toggle {
       user-select: none;
+      white-space: nowrap;
     }
 
     .resources-menu {
       position: absolute;
-      top: 100%;
+      bottom: 100%; /* POP UP ABOVE the button */
       right: 0;
       z-index: 1100;
       background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 8px;
+      border-radius: 8px 8px 0 0; /* rounded top corners */
       overflow: hidden;
       max-height: 0;
       opacity: 0;
-      transform: translateY(-10px);
+      transform: translateY(10px);
       transition: all 0.6s ease;
       display: flex;
       flex-direction: column;
       pointer-events: none;
       white-space: nowrap;
-      margin-top: 6px;
+      margin-bottom: 6px; /* gap below menu */
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .resources-wrapper:hover .resources-menu {
+    /* Keep menu open when hovering toggle or menu */
+    .resources-wrapper:hover .resources-menu,
+    .resources-menu:hover {
       max-height: 500px;
       opacity: 1;
       transform: translateY(0);
@@ -143,6 +148,11 @@
       color: white;
       text-decoration: none;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
+      user-select: text;
+    }
+
+    .resources-menu a:first-child {
+      border-top: none;
     }
 
     .resources-menu a:hover {
@@ -160,7 +170,8 @@
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
-      height="60" width="300">
+      height="60" width="300" 
+      title="Moe Counter">
     </iframe>
   </div>
 
@@ -168,7 +179,7 @@
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
     <span class="separator">|</span>
     <div class="resources-wrapper">
-      <span class="resources-toggle">Resources ▼</span>
+      <span class="resources-toggle">Resources ▲</span>
       <div class="resources-menu">
         <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
         <a href="https://wallpapercave.com" target="_blank" rel="noopener noreferrer">WallpaperCave</a>
@@ -189,4 +200,3 @@
   </script>
 </body>
 </html>
-
