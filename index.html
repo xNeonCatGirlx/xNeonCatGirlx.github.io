@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>xNeonCatGirlx</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/x-icon" href="https://github.com/xNeonCatGirlx/xNeonCatGirlx.github.io/blob/main/web.ico">
+  <link rel="icon" type="image/x-icon" href="https://github.com/xNeonCatGirlx/xNeonCatGirlx.github.io/blob/main/web.ico" />
   
   <style>
     html, body {
@@ -14,14 +14,50 @@
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
+      flex-direction: column;  /* stack vertically */
       align-items: center;
       justify-content: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: white;
+    }
+
+    .rotating-text {
+      font-size: 2rem;
+      font-weight: bold;
+      height: 2.5rem;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .rotating-text span {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      animation: rotateWord 12s linear infinite 0s;
+    }
+    .rotating-text span:nth-child(2) {
+      animation-delay: 4s;
+    }
+    .rotating-text span:nth-child(3) {
+      animation-delay: 8s;
+    }
+
+    @keyframes rotateWord {
+      0% { opacity: 0; transform: translateY(100%); }
+      5% { opacity: 1; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(0); }
+      35% { opacity: 0; transform: translateY(-100%); }
+      100% { opacity: 0; }
     }
 
     .counter-container {
       background-color: transparent;
       padding: 0;
-      backdrop-filter: none);
+      backdrop-filter: none;
       border-radius: 0;
     }
 
@@ -32,13 +68,18 @@
   </style>
 </head>
 <body>
+  <div class="rotating-text">
+    <span>Moe Counter</span>
+    <span>Wallpaper</span>
+    <span>Welcome!</span>
+  </div>
+
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
       height="60">
     </iframe>
   </div>
-
 
   <script>
     const wallpapers = [
@@ -49,15 +90,10 @@
       "https://wallpapercave.com/wp/wp15016687.webp",
       "https://wallpapercave.com/wp/wp11375892.jpg",
       "https://wallpapercave.com/wp/wp15016723.webp",
-      
     ];
 
     const randomWallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
     document.body.style.backgroundImage = `url('${randomWallpaper}')`;
-    document.body.style.backgroundSize = "cover";
-    document.body.style.backgroundPosition = "center";
-    document.body.style.backgroundRepeat = "no-repeat";
-    document.body.style.backgroundAttachment = "fixed";
   </script>
 </body>
 </html>
