@@ -8,12 +8,10 @@
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
   
   <style>
+    /* Prevent scrolling */
     html, body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; 
-      align-items: center;
-      height: 100vh; 
+      overflow: hidden;
+      height: 100vh;
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -22,63 +20,13 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
-}
-    .bottom-right-links {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    z-index: 1000;
-}
 
-    .resources-toggle {
-    padding: 6px 12px;
-    cursor: pointer;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-    .resources-menu {
-    display: flex;
-    flex-direction: column;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-    .resources-menu a {
-    padding: 6px 12px;
-    color: white;
-    text-decoration: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-    .resources-menu a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    text-decoration: underline;
-}
-
-    .bottom-right-links:hover .resources-menu {
-    max-height: 300px; /* Adjust based on number of links */
-}
-
-}
-
-    .bottom-right-links a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 4px;
-}
-
-    .bottom-right-links a:hover {
-      text-decoration: underline;
-}
-
+      /* Center content vertically/horizontally */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; 
+      align-items: center;
+    }
 
     .rotating-text {
       font-size: 2rem;
@@ -122,6 +70,84 @@
       border: none;
       transform: scale(1.8);
     }
+
+    /* Bottom right links container */
+    .bottom-right-links {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      color: white;
+      z-index: 1000;
+
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      user-select: none;
+    }
+
+    .bottom-right-links a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .bottom-right-links a:hover {
+      text-decoration: underline;
+    }
+
+    .separator {
+      user-select: none;
+      color: white;
+    }
+
+    /* Resources dropdown container */
+    .resources-wrapper {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .resources-toggle {
+      user-select: none;
+    }
+
+    .resources-menu {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.6s ease;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      white-space: nowrap;
+      margin-bottom: 6px;
+    }
+
+    .resources-wrapper:hover .resources-menu {
+      max-height: 500px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .resources-menu a {
+      padding: 8px 12px;
+      color: white;
+      text-decoration: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .resources-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
   </style>
 </head>
 <body>
@@ -131,22 +157,24 @@
     <span>Placeholder</span>
   </div>
 
-  <div class="bottom-right-links">
-    <div class="resources-toggle">Resources ▼</div>
-    <div class="resources-menu">
-    <a href="https://count.getloli.com" target="_blank">Moe Counter</a>
-    <a href="https://wallpapercave.com" target="_blank">WallpaperCave</a>
-    <a href="https://github.com/xNeonCatGirlx" target="_blank">GitHub</a>
-    </div>
-  </div>
-
-
-
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
       height="60" width="300">
     </iframe>
+  </div>
+
+  <div class="bottom-right-links">
+    <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <span class="separator">|</span>
+    <div class="resources-wrapper">
+      <span class="resources-toggle">Resources ▼</span>
+      <div class="resources-menu">
+        <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
+        <a href="https://wallpapercave.com" target="_blank" rel="noopener noreferrer">WallpaperCave</a>
+        <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
   </div>
 
   <script>
