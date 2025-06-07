@@ -14,6 +14,10 @@
       width: 100vw;
       position: relative;
       overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10vw; /* 10% padding on left and right */
+      box-sizing: border-box;
     }
     .fade-out {
       opacity: 1;
@@ -22,20 +26,27 @@
     .fade-out.fading {
       opacity: 0;
     }
+    /* Container for left and right walls */
+    .side-wall {
+      width: 25vw;  /* each side takes 25% of viewport width */
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      perspective: 800px;
+    }
   </style>
 </head>
 <body>
-  <div class="walls"></div>
+  <div class="walls">
+    <div class="side-wall left-wall"></div>
+    <div class="side-wall right-wall"></div>
+  </div>
+
   <script>
     const kanas = ['ﾆ','ﾜ','ﾒ','ｼ','ｻ','ﾘ','ｳ','ﾗ','ｵ','ｴ','ｱ','ｾ','ﾊ','ｹ','ｰ','ﾃ','ｷ','ﾋ','ﾍ','ﾑ','ﾕ','ｽ','ﾏ'];
-    const walls = document.querySelector('.walls');
-    const numWalls = 14;
-    const numColumns = 30;
+    const numColumnsPerSide = 8;  // fewer columns per side
     const dropsPerVariant = 15;
     const variantsPerColumn = 2;
-    const maxColumnsPerWall = 20;
-    const maxVisibleTime = 3000; // ms
-    const fadeDuration = 2000;   // ms
 
     function randDec() {
       return +(Math.random().toFixed(10));
@@ -62,36 +73,39 @@
         column.appendChild(variant);
       }
 
-        setTimeout(() => {
-          column.classList.add('fading');
-        }, 1500);
-
+      setTimeout(() => {
+        column.classList.add('fading');
+      }, 1500);
 
       return column;
     }
 
-    for (let w = 0; w < numWalls; w++) {
-      const wall = document.createElement('div');
-      wall.className = 'wall';
-      wall.style.setProperty('--wi', w - 3);
-      wall.style.setProperty('--wall-index', w + 1);
-      wall.style.setProperty('--wall-random', randDec());
-
-      for (let i = 0; i < Math.min(numColumns, maxColumnsPerWall); i++) {
+    function createWall(sideWallElem, wallIndex) {
+      for (let i = 0; i < numColumnsPerSide; i++) {
         const column = spawnColumn(i);
-        wall.appendChild(column);
+        // Set custom properties for animation randomness
+        column.style.setProperty('--r0', randDec());
+        column.style.setProperty('--r1', randDec());
+        column.style.setProperty('--r2', randDec());
+        sideWallElem.appendChild(column);
       }
-
-      walls.appendChild(wall);
     }
 
-    setInterval(() => {
-      document.querySelectorAll('.wall').forEach(wall => {
-        if (wall.children.length < maxColumnsPerWall) {
-          wall.appendChild(spawnColumn());
-        }
-      });
-    }, 1000);
+    // Select left and right walls
+    const leftWall = document.querySelector('.left-wall');
+    const rightWall = document.querySelector('.right-wall');
+
+    createWall(leftWall, 1);
+    createWall(rightWall, 2);
+
+    // Optional: continuously add columns if needed (disabled for less text)
+    // setInterval(() => {
+    //   [leftWall, rightWall].forEach(wall => {
+    //     if (wall.children.length < numColumnsPerSide) {
+    //       wall.appendChild(spawnColumn());
+    //     }
+    //   });
+    // }, 2000);
   </script>
 </body>
 </html>
