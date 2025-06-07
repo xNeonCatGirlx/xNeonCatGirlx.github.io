@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,12 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
-  
+
   <style>
-    /* Prevent scrolling */
     html, body {
-      overflow: hidden;
-      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; 
+      align-items: center;
+      height: 100vh; 
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -20,13 +22,28 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
+}
+    .bottom-right-links {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: white;
+}
 
-      /* Center content vertically/horizontally */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; 
-      align-items: center;
-    }
+    .bottom-right-links a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 4px;
+}
+
+    .bottom-right-links a:hover {
+      text-decoration: underline;
+}
+
 
     .rotating-text {
       font-size: 2rem;
@@ -60,48 +77,15 @@
     }
 
     .counter-container {
-      position: relative;
-      z-index: 900;
-      overflow: visible; /* ensure iframe scaling doesn't clip */
+      background-color: transparent;
+      padding: 0;
+      backdrop-filter: none;
+      border-radius: 0;
     }
 
     iframe {
       border: none;
       transform: scale(1.8);
-      transform-origin: center;
-    }
-
-    /* Bottom right links container */
-    .bottom-right-links {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-size: 0.9rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
-      color: white;
-      z-index: 1000;
-
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 6px 12px;
-      user-select: none;
-    }
-
-    .bottom-right-links a {
-      color: #ffffff;
-      text-decoration: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: background-color 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .bottom-right-links a:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-      text-decoration: underline;
     }
   </style>
 </head>
@@ -112,17 +96,17 @@
     <span>Placeholder</span>
   </div>
 
+  <div class="bottom-right-links">
+    <a href="https://github.com/xNeonCatGirlx" target="_blank">GitHub</a> |
+    <a href="https://count.getloli.com" target="_blank">Moe Counter</a>
+  </div>
+
+
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
-      height="60" width="300" 
-      title="Moe Counter">
+      height="60" width="300">
     </iframe>
-  </div>
-
-  <div class="bottom-right-links">
-    <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
   <script>
