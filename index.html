@@ -68,7 +68,7 @@
     iframe {
       border: none;
       transform: scale(1.8);
-      transform-origin: center; /* scale from center */
+      transform-origin: center;
     }
 
     /* Bottom right links container */
@@ -84,7 +84,7 @@
 
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 12px;
       padding: 6px 12px;
       user-select: none;
     }
@@ -92,71 +92,16 @@
     .bottom-right-links a {
       color: #ffffff;
       text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
+      white-space: nowrap;
     }
 
     .bottom-right-links a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
       text-decoration: underline;
-    }
-
-    .separator {
-      user-select: none;
-      color: white;
-    }
-
-    .resources-wrapper {
-      position: relative;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .resources-toggle {
-      user-select: none;
-      white-space: nowrap;
-    }
-
-    .resources-menu {
-      position: absolute;
-      bottom: 100%; /* POP UP ABOVE the button */
-      right: 0;
-      z-index: 1100;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 8px 8px 0 0; /* rounded top corners */
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.6s ease;
-      display: flex;
-      flex-direction: column;
-      pointer-events: none;
-      white-space: nowrap;
-      margin-bottom: 6px; /* gap below menu */
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    /* Keep menu open when hovering toggle or menu */
-    .resources-wrapper:hover .resources-menu,
-    .resources-menu:hover {
-      max-height: 500px;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .resources-menu a {
-      padding: 8px 12px;
-      color: white;
-      text-decoration: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      user-select: text;
-    }
-
-    .resources-menu a:first-child {
-      border-top: none;
-    }
-
-    .resources-menu a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
@@ -177,14 +122,7 @@
 
   <div class="bottom-right-links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <span class="separator">|</span>
-    <div class="resources-wrapper">
-      <span class="resources-toggle">Resources ▲</span>
-      <div class="resources-menu">
-        <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
-        <a href="https://wallpapercave.com" target="_blank" rel="noopener noreferrer">WallpaperCave</a>
-      </div>
-    </div>
+    <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
   <script>
