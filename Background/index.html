@@ -62,11 +62,10 @@
         column.appendChild(variant);
       }
 
-      // Fade then remove
-      setTimeout(() => {
-        column.classList.add('fading');
-        setTimeout(() => column.remove(), fadeDuration);
-      }, maxVisibleTime);
+        setTimeout(() => {
+          column.classList.add('fading');
+        }, 2500);
+
 
       return column;
     }
