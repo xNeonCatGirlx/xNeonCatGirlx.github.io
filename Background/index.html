@@ -15,27 +15,6 @@
       position: relative;
       overflow: hidden;
     }
-    .wall {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      gap: 1rem;
-      pointer-events: none;
-    }
-    .column {
-      display: flex;
-      flex-direction: column-reverse;
-      transform: translateY(-120vh);
-      animation-name: fall;
-      animation-timing-function: ease-in-out;
-      animation-fill-mode: forwards;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(2vh);
-        opacity: 0;
-      }
-    }
   </style>
 </head>
 <body>
@@ -43,23 +22,22 @@
   <script>
     const kanas = ['ﾆ','ﾜ','ﾒ','ｼ','ｻ','ﾘ','ｳ','ﾗ','ｵ','ｴ','ｱ','ｾ','ﾊ','ｹ','ｰ','ﾃ','ｷ','ﾋ','ﾍ','ﾑ','ﾕ','ｽ','ﾏ'];
     const walls = document.querySelector('.walls');
-    const numWalls = 3;
-    const maxColumnsOnScreen = 10;
+    const numWalls = 14;
+    const numColumns = 30;
     const dropsPerVariant = 15;
     const variantsPerColumn = 2;
-    const durationMin = 6;
-    const durationMax = 12;
+    const maxColumnsPerWall = 20;
 
-    function randKana() {
-      return kanas[Math.floor(Math.random() * kanas.length)];
+    function randDec() {
+      return +(Math.random().toFixed(10));
     }
 
-    function spawnColumn(wall) {
+    function spawnColumn(columnIndex) {
       const column = document.createElement('div');
       column.className = 'column';
-
-      const duration = (Math.random() * (durationMax - durationMin) + durationMin).toFixed(2);
-      column.style.animationDuration = `${duration}s`;
+      column.style.setProperty('--r0', randDec());
+      column.style.setProperty('--r1', randDec());
+      column.style.setProperty('--r2', randDec());
 
       for (let v = 0; v < variantsPerColumn; v++) {
         const variant = document.createElement('div');
@@ -68,30 +46,44 @@
         for (let d = 0; d < dropsPerVariant; d++) {
           const drop = document.createElement('div');
           drop.className = 'drop';
-          drop.textContent = randKana();
+          drop.textContent = kanas[Math.floor(Math.random() * kanas.length)];
           variant.appendChild(drop);
         }
 
         column.appendChild(variant);
       }
 
-      wall.appendChild(column);
-
-      setTimeout(() => column.remove(), duration * 1000);
+      return column;
     }
 
     for (let w = 0; w < numWalls; w++) {
       const wall = document.createElement('div');
       wall.className = 'wall';
       wall.style.setProperty('--wi', w - 3);
-      walls.appendChild(wall);
+      wall.style.setProperty('--wall-index', w + 1);
+      wall.style.setProperty('--wall-random', randDec());
 
-      setInterval(() => {
-        if (wall.children.length < maxColumnsOnScreen) {
-          spawnColumn(wall);
-        }
-      }, 500);
+      for (let i = 0; i < Math.min(numColumns, maxColumnsPerWall); i++) {
+        const column = spawnColumn(i);
+        wall.appendChild(column);
+      }
+
+      walls.appendChild(wall);
     }
+
+    // Gradually add new columns at interval (fade management)
+    setInterval(() => {
+      document.querySelectorAll('.wall').forEach(wall => {
+        if (wall.children.length < maxColumnsPerWall) {
+          const column = spawnColumn();
+          wall.appendChild(column);
+        } else {
+          wall.removeChild(wall.firstElementChild);
+          const column = spawnColumn();
+          wall.appendChild(column);
+        }
+      });
+    }, 2000); // every 2 seconds
   </script>
 </body>
 </html>
