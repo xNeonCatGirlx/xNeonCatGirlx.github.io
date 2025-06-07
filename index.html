@@ -9,20 +9,21 @@
   
   <style>
     html, body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Pushes first child to top, last child to bottom */
+      align-items: center;
+      height: 100vh; /* full viewport height */
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;  /* stack vertically */
-      align-items: center;
-      justify-content: center;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: white;
-    }
+}
+
 
     .rotating-text {
       font-size: 2rem;
