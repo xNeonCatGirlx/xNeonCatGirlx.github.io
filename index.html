@@ -115,20 +115,21 @@
 
     .resources-menu {
       position: absolute;
-      bottom: 100%;
+      top: 100%;
       right: 0;
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 8px;
       overflow: hidden;
       max-height: 0;
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(-10px);
       transition: all 0.6s ease;
       display: flex;
       flex-direction: column;
       pointer-events: none;
       white-space: nowrap;
-      margin-bottom: 6px;
+      margin-top: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
     .resources-wrapper:hover .resources-menu {
@@ -172,7 +173,6 @@
       <div class="resources-menu">
         <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
         <a href="https://wallpapercave.com" target="_blank" rel="noopener noreferrer">WallpaperCave</a>
-        <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </div>
   </div>
@@ -190,3 +190,4 @@
   </script>
 </body>
 </html>
+
