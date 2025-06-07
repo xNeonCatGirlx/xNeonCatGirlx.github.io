@@ -123,7 +123,9 @@
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=12&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
       height="60" width="300" 
-      title="Moe Counter">
+      title="Moe Counter"
+      id="moe-counter"
+    >
     </iframe>
   </div>
 
@@ -132,5 +134,35 @@
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
+  <script>
+    // Konami code sequence of key names
+    const konamiCode = [
+      'ArrowUp',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowLeft',
+      'ArrowRight'
+    ];
+
+    let inputSequence = [];
+
+    document.addEventListener('keydown', (event) => {
+      inputSequence.push(event.key);
+      
+      // Keep inputSequence length same as konamiCode length
+      if (inputSequence.length > konamiCode.length) {
+        inputSequence.shift();
+      }
+
+      if (inputSequence.join(',') === konamiCode.join(',')) {
+        // Change the iframe src on Konami code detected
+        const counterIframe = document.getElementById('moe-counter');
+        counterIframe.src = "https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=gelbooru-h&padding=10&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto";
+      }
+    });
+  </script>
 </body>
 </html>
