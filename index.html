@@ -60,11 +60,10 @@
     }
 
     .counter-container {
-      background-color: transparent;
-      padding: 0;
-      backdrop-filter: none;
-      border-radius: 0;
-    }
+    position: relative;
+    z-index: 900;
+    overflow: visible; /* ensure iframe scaling doesn't clip */
+}
 
     iframe {
       border: none;
@@ -103,7 +102,6 @@
       color: white;
     }
 
-    /* Resources dropdown container */
     .resources-wrapper {
       position: relative;
       cursor: pointer;
@@ -117,6 +115,7 @@
       position: absolute;
       top: 100%;
       right: 0;
+      z-index: 1100;
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 8px;
       overflow: hidden;
