@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <!-- Google Font: Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
 
   <style>
     html, body {
@@ -13,12 +17,13 @@
       padding: 0;
       height: 100vh;
       overflow: hidden;
-      font-family: 'Open Sans', sans-serif; /* Apply Open Sans globally */
+      font-family: 'Open Sans', sans-serif;
       color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
+      background: transparent;
     }
 
     #background-iframe {
@@ -33,14 +38,12 @@
     }
 
     .rotating-text {
-      font-size: 1.8rem;
-      font-weight: normal;
-      height: 2.5rem;
+      font-size: 2rem;
+      height: 3rem;
       width: 100%;
       overflow: hidden;
       position: fixed;
       top: 10px;
-      left: 0;
       text-align: center;
       z-index: 1000;
     }
@@ -51,15 +54,12 @@
       opacity: 0;
       animation: rotateWord 16s linear infinite 0s;
     }
-
     .rotating-text span:nth-child(2) {
       animation-delay: 4s;
     }
-
     .rotating-text span:nth-child(3) {
       animation-delay: 8s;
     }
-
     .rotating-text span:nth-child(4) {
       animation-delay: 12s;
     }
@@ -78,42 +78,14 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-radius: 16px;
-      padding: 30px 40px;
-      width: 70%;
-      max-width: 800px;
+      padding: 20px 30px;
+      max-width: 600px;
+      margin-top: 100px;
       color: white;
-      font-weight: normal;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
       text-align: center;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
       z-index: 900;
-    }
-
-    .bottom-right-links {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      font-size: 0.9rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 6px 10px;
-      border-radius: 8px;
-      color: white;
-      user-select: none;
-      z-index: 1000;
-    }
-
-    .bottom-right-links a {
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 4px;
-    }
-
-    .bottom-right-links a:hover {
-      text-decoration: underline;
     }
 
     .counter-container {
@@ -123,7 +95,6 @@
       transform: translateX(-50%);
       background-color: transparent;
       padding: 0;
-      border-radius: 0;
       z-index: 900;
     }
 
@@ -133,16 +104,45 @@
       transform-origin: center;
       display: block;
     }
+
+    .bottom-right-links,
+    .language-switcher {
+      position: fixed;
+      font-size: 0.9rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: white;
+      user-select: none;
+      z-index: 1000;
+    }
+
+    .bottom-right-links {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .language-switcher {
+      top: 10px;
+      right: 10px;
+    }
+
+    .bottom-right-links a,
+    .language-switcher a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 4px;
+    }
+
+    .bottom-right-links a:hover,
+    .language-switcher a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Centered Info Box -->
-  <div class="purple-info-box">
-    <p>Hyprland style text box for testing</p>
-  </div>
-
-  <!-- Rotating Top Text -->
+  <!-- Rotating Header Text -->
   <div class="rotating-text">
     <span>Welcome to xNeonCatGirlx's profile!</span>
     <span>Feel free to look around</span>
@@ -150,7 +150,12 @@
     <span>Adding support for flight tracking</span>
   </div>
 
-  <!-- Background -->
+  <!-- Purple Info Box -->
+  <div class="purple-info-box">
+    <p>This is a beautiful Hyprland-style info box. 🌌<br>You can change this text in the HTML.</p>
+  </div>
+
+  <!-- Background Animation -->
   <iframe src="Background/index.html" id="background-iframe"></iframe>
 
   <!-- Counter -->
@@ -163,31 +168,75 @@
     </iframe>
   </div>
 
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <a href="#" onclick="switchLang('en')">EN</a> |
+    <a href="#" onclick="switchLang('zh')">ZH</a> |
+    <a href="#" onclick="switchLang('ja')">JA</a>
+  </div>
+
   <!-- Footer Links -->
   <div class="bottom-right-links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
-  <!-- Konami Code Script -->
+  <!-- Scripts -->
   <script>
-    const konamiCode = [
-      'ArrowUp',
-      'ArrowUp',
-      'ArrowDown',
-      'ArrowDown',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowLeft',
-      'ArrowRight'
-    ];
+    const translations = {
+      en: {
+        box: "This is a beautiful Hyprland-style info box. 🌌<br>You can change this text in the HTML.",
+        rotating: [
+          "Welcome to xNeonCatGirlx's profile!",
+          "Feel free to look around",
+          "Currently flying on Volanta",
+          "Adding support for flight tracking"
+        ]
+      },
+      zh: {
+        box: "这是一个漂亮的 Hyprland 风格信息框 🌌<br>你可以在 HTML 中修改这段文字。",
+        rotating: [
+          "欢迎来到 xNeonCatGirlx 的主页！",
+          "随便看看吧～",
+          "目前在 Volanta 上飞行中",
+          "正在添加航班跟踪支持"
+        ]
+      },
+      ja: {
+        box: "これは美しい Hyprland スタイルの情報ボックスです 🌌<br>HTML でこのテキストを変更できます。",
+        rotating: [
+          "ようこそ、xNeonCatGirlx のプロフィールへ！",
+          "ごゆっくりご覧ください～",
+          "現在 Volanta でフライト中",
+          "フライト追跡機能を追加中"
+        ]
+      }
+    };
 
+    function switchLang(lang) {
+      const t = translations[lang];
+      if (!t) return;
+
+      document.querySelector('.purple-info-box').innerHTML = `<p>${t.box}</p>`;
+      const rotatingText = document.querySelector('.rotating-text');
+      rotatingText.innerHTML = '';
+      t.rotating.forEach((line, i) => {
+        const span = document.createElement('span');
+        span.textContent = line;
+        if (i > 0) span.style.animationDelay = `${i * 4}s`;
+        rotatingText.appendChild(span);
+      });
+    }
+
+    // Set default language
+    switchLang('en');
+
+    // Konami Code Easter Egg
+    const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
     let inputSequence = [];
-
     document.addEventListener('keydown', (event) => {
       inputSequence.push(event.key);
       if (inputSequence.length > konamiCode.length) inputSequence.shift();
-
       if (inputSequence.join(',') === konamiCode.join(',')) {
         const counterIframe = document.getElementById('moe-counter');
         counterIframe.src = "https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=gelbooru-h&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto";
