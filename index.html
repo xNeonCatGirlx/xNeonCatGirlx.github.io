@@ -4,13 +4,8 @@
   <meta charset="UTF-8" />
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
-
-  <!-- Google Font: Open Sans -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
-
   <style>
     html, body {
       margin: 0;
@@ -19,10 +14,6 @@
       overflow: hidden;
       font-family: 'Open Sans', sans-serif;
       color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
       background: transparent;
     }
 
@@ -37,39 +28,13 @@
       pointer-events: none;
     }
 
-    .rotating-text {
-      font-size: 2rem;
-      height: 3rem;
-      width: 100%;
-      overflow: hidden;
-      position: fixed;
-      top: 10px;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    .rotating-text span {
+    .center-wrapper {
       position: absolute;
-      width: 100%;
-      opacity: 0;
-      animation: rotateWord 16s linear infinite 0s;
-    }
-    .rotating-text span:nth-child(2) {
-      animation-delay: 4s;
-    }
-    .rotating-text span:nth-child(3) {
-      animation-delay: 8s;
-    }
-    .rotating-text span:nth-child(4) {
-      animation-delay: 12s;
-    }
-
-    @keyframes rotateWord {
-      0% { opacity: 0; transform: translateY(100%); }
-      5% { opacity: 1; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(0); }
-      35% { opacity: 0; transform: translateY(-100%); }
-      100% { opacity: 0; }
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
     }
 
     .purple-info-box {
@@ -78,35 +43,49 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-radius: 16px;
-      padding: 20px 30px;
+      padding: 24px 32px;
       max-width: 600px;
-      margin-top: 100px;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
-      text-align: center;
-      z-index: 900;
+      font-weight: normal;
     }
 
-    .counter-container {
+    .rotating-text-container {
       position: fixed;
-      bottom: 50px;
+      top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: transparent;
-      padding: 0;
-      z-index: 900;
+      width: 100%;
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+      height: 2.5rem;
+      overflow: hidden;
+      z-index: 1000;
+      pointer-events: none;
     }
 
-    iframe {
-      border: none;
-      transform: scale(1.8);
-      transform-origin: center;
-      display: block;
+    .rotating-text span {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      animation: rotateWord 16s ease-in-out infinite;
+      font-size: 2rem;
     }
 
-    .bottom-right-links,
-    .language-switcher {
+    .rotating-text span:nth-child(2) { animation-delay: 4s; }
+    .rotating-text span:nth-child(3) { animation-delay: 8s; }
+    .rotating-text span:nth-child(4) { animation-delay: 12s; }
+
+    @keyframes rotateWord {
+      0%   { opacity: 0; transform: translateY(100%); }
+      5%   { opacity: 1; transform: translateY(0); }
+      20%  { opacity: 1; transform: translateY(0); }
+      25%  { opacity: 0; transform: translateY(-100%); }
+      100% { opacity: 0; }
+    }
+
+    .language-selector, .bottom-right-links {
       position: fixed;
       font-size: 0.9rem;
       background-color: rgba(0, 0, 0, 0.4);
@@ -117,45 +96,73 @@
       z-index: 1000;
     }
 
+    .language-selector {
+      top: 10px;
+      right: 10px;
+    }
+
     .bottom-right-links {
       bottom: 10px;
       right: 10px;
     }
 
-    .language-switcher {
-      top: 10px;
-      right: 10px;
-    }
-
-    .bottom-right-links a,
-    .language-switcher a {
+    .language-selector a,
+    .bottom-right-links a {
       color: #ffffff;
       text-decoration: none;
       margin: 0 4px;
+      cursor: pointer;
     }
 
-    .bottom-right-links a:hover,
-    .language-switcher a:hover {
+    .language-selector a:hover,
+    .bottom-right-links a:hover {
       text-decoration: underline;
+    }
+
+    .counter-container {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: transparent;
+      z-index: 900;
+    }
+
+    iframe {
+      border: none;
+      transform: scale(1.8);
+      transform-origin: center;
+      display: block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Rotating Header Text -->
-  <div class="rotating-text">
-    <span>Welcome to xNeonCatGirlx's profile!</span>
-    <span>Feel free to look around</span>
-    <span>Currently flying on Volanta</span>
-    <span>Adding support for flight tracking</span>
+  <!-- Rotating Text -->
+  <div class="rotating-text-container">
+    <div class="rotating-text">
+      <span>Welcome to xNeonCatGirlx's profile!</span>
+      <span>Feel free to look around</span>
+      <span>Currently flying on Volanta</span>
+      <span>Adding support for flight tracking</span>
+    </div>
   </div>
 
-  <!-- Purple Info Box -->
-  <div class="purple-info-box">
-    <p>Hyprland style box for testing</p>
+  <!-- Language Switch -->
+  <div class="language-selector">
+    <a onclick="switchLang('en')">EN</a> |
+    <a onclick="switchLang('zh')">中文</a> |
+    <a onclick="switchLang('ja')">日本語</a>
   </div>
 
-  <!-- Background Animation -->
+  <!-- Main Centered Info Box -->
+  <div class="center-wrapper">
+    <div class="purple-info-box" id="info-box">
+      <p>Display box test </p>
+    </div>
+  </div>
+
+  <!-- Background -->
   <iframe src="Background/index.html" id="background-iframe"></iframe>
 
   <!-- Counter -->
@@ -164,18 +171,11 @@
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
       height="60" width="300" 
       title="Moe Counter"
-      id="moe-counter">
-    </iframe>
+      id="moe-counter"
+    ></iframe>
   </div>
 
-  <!-- Language Switcher -->
-  <div class="language-switcher">
-    <a href="#" onclick="switchLang('en')">EN</a> |
-    <a href="#" onclick="switchLang('zh')">ZH</a> |
-    <a href="#" onclick="switchLang('ja')">JA</a>
-  </div>
-
-  <!-- Footer Links -->
+  <!-- GitHub & Moe Counter links -->
   <div class="bottom-right-links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
@@ -183,65 +183,33 @@
 
   <!-- Scripts -->
   <script>
-    const translations = {
-      en: {
-        box: "This is a beautiful Hyprland-style info box. 🌌<br>You can change this text in the HTML.",
-        rotating: [
-          "Welcome to xNeonCatGirlx's profile!",
-          "Feel free to look around",
-          "Currently flying on Volanta",
-          "Adding support for flight tracking"
-        ]
-      },
-      zh: {
-        box: "Hyprland风格的文字框,目前不知道写什么好",
-        rotating: [
-          "欢迎来到 xNeonCatGirlx 的主页！",
-          "随便看看吧～",
-          "目前在 Volanta 上飞行中",
-          "正在添加航班跟踪支持"
-        ]
-      },
-      ja: {
-        box: "Hyprlandスタイルテキストボックス",
-        rotating: [
-          "ようこそ、xNeonCatGirlx のプロフィールへ！",
-          "ごゆっくりご覧ください～",
-          "現在 Volanta でフライト中",
-          "フライト追跡機能を追加中"
-        ]
-      }
-    };
-
-    function switchLang(lang) {
-      const t = translations[lang];
-      if (!t) return;
-
-      document.querySelector('.purple-info-box').innerHTML = `<p>${t.box}</p>`;
-      const rotatingText = document.querySelector('.rotating-text');
-      rotatingText.innerHTML = '';
-      t.rotating.forEach((line, i) => {
-        const span = document.createElement('span');
-        span.textContent = line;
-        if (i > 0) span.style.animationDelay = `${i * 4}s`;
-        rotatingText.appendChild(span);
-      });
-    }
-
-    // Set default language
-    switchLang('en');
-
-    // Konami Code Easter Egg
-    const konamiCode = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight'];
+    const konamiCode = [
+      'ArrowUp', 'ArrowUp',
+      'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight',
+      'ArrowLeft', 'ArrowRight'
+    ];
     let inputSequence = [];
+
     document.addEventListener('keydown', (event) => {
       inputSequence.push(event.key);
       if (inputSequence.length > konamiCode.length) inputSequence.shift();
       if (inputSequence.join(',') === konamiCode.join(',')) {
-        const counterIframe = document.getElementById('moe-counter');
-        counterIframe.src = "https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=gelbooru-h&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto";
+        document.getElementById('moe-counter').src =
+          "https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=gelbooru-h&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto";
       }
     });
+
+    function switchLang(lang) {
+      const infoBox = document.getElementById('info-box');
+      if (lang === 'en') {
+        infoBox.innerHTML = "<p>Display box test </p>";
+      } else if (lang === 'zh') {
+        infoBox.innerHTML = "<p>展示框测试 </p>";
+      } else if (lang === 'ja') {
+        infoBox.innerHTML = "<p>ディスプレイボックスのテスト</p>";
+      }
+    }
   </script>
 </body>
 </html>
