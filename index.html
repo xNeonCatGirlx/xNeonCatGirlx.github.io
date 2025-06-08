@@ -5,7 +5,12 @@
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
+  
+  <!-- Open Sans for general -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
+  <!-- Noto Sans JP for Japanese -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
+  
   <style>
     html, body {
       margin: 0;
@@ -49,6 +54,7 @@
       font-size: 1.2rem;
       box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
       font-weight: normal;
+      font-family: 'Open Sans', sans-serif;
     }
 
     .rotating-text-container {
@@ -61,7 +67,7 @@
       font-family: 'Open Sans', sans-serif;
       height: 2.5rem;
       overflow: hidden;
-      z-index: 1000;
+      z-index: center;
       pointer-events: none;
     }
 
@@ -158,7 +164,7 @@
   <!-- Main Centered Info Box -->
   <div class="center-wrapper">
     <div class="purple-info-box" id="info-box">
-      <p>Display box test </p>
+      <p>Display box test 🌌</p>
     </div>
   </div>
 
@@ -181,7 +187,6 @@
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
-  <!-- Scripts -->
   <script>
     const konamiCode = [
       'ArrowUp', 'ArrowUp',
@@ -203,11 +208,14 @@
     function switchLang(lang) {
       const infoBox = document.getElementById('info-box');
       if (lang === 'en') {
+        infoBox.style.fontFamily = "'Open Sans', sans-serif";
         infoBox.innerHTML = "<p>Display box test </p>";
       } else if (lang === 'zh') {
+        infoBox.style.fontFamily = "'Open Sans', sans-serif";
         infoBox.innerHTML = "<p>展示框测试 </p>";
       } else if (lang === 'ja') {
-        infoBox.innerHTML = "<p>ディスプレイボックスのテスト</p>";
+        infoBox.style.fontFamily = "'Noto Sans JP', sans-serif";
+        infoBox.innerHTML = "<p>ディスプレイボックスのテスト </p>";
       }
     }
   </script>
