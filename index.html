@@ -4,44 +4,16 @@
   <meta charset="UTF-8" />
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
-
-    .purple-info-box {
-      background: rgba(128, 0, 128, 0.2); /* transparent purple */
-      border: 1px solid rgba(200, 100, 255, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 16px;
-      padding: 16px 24px;
-      max-width: 500px;
-      margin: 20px auto;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 1.1rem;
-      box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
-      text-align: center;
-    }
-
-    #background-iframe {
-      position: fixed;  /* fixed position */
-      top: 0;
-      left: 0;
-      width: 100vw;    /* full viewport width */
-      height: 100vh;   /* full viewport height */
-      border: none;
-      z-index: -1;     /* behind all content */
-      pointer-events: none; /* make clicks go through iframe */
-    }
-
     html, body {
       margin: 0;
       padding: 0;
       height: 100vh;
-      overflow: hidden; 
-      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      font-family: 'Open Sans', sans-serif; /* Apply Open Sans globally */
       color: white;
       display: flex;
       flex-direction: column;
@@ -49,17 +21,27 @@
       justify-content: space-between;
     }
 
+    #background-iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     .rotating-text {
-      font-size: 2rem;
-      font-weight: bold;
-      height: 3rem;
-      width: 40rem;
+      font-size: 1.8rem;
+      font-weight: normal;
+      height: 2.5rem;
+      width: 100%;
       overflow: hidden;
       position: fixed;
       top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-bottom: 0;
+      left: 0;
+      text-align: center;
       z-index: 1000;
     }
 
@@ -67,14 +49,17 @@
       position: absolute;
       width: 100%;
       opacity: 0;
-      animation: rotateWord 12s linear infinite 0s;
+      animation: rotateWord 16s linear infinite 0s;
     }
+
     .rotating-text span:nth-child(2) {
       animation-delay: 4s;
     }
+
     .rotating-text span:nth-child(3) {
       animation-delay: 8s;
     }
+
     .rotating-text span:nth-child(4) {
       animation-delay: 12s;
     }
@@ -85,6 +70,27 @@
       30% { opacity: 1; transform: translateY(0); }
       35% { opacity: 0; transform: translateY(-100%); }
       100% { opacity: 0; }
+    }
+
+    .purple-info-box {
+      background: rgba(128, 0, 128, 0.2);
+      border: 1px solid rgba(200, 100, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 30px 40px;
+      width: 70%;
+      max-width: 800px;
+      color: white;
+      font-weight: normal;
+      font-size: 1.3rem;
+      box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
+      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 900;
     }
 
     .bottom-right-links {
@@ -131,37 +137,40 @@
 </head>
 <body>
 
+  <!-- Centered Info Box -->
   <div class="purple-info-box">
-  <p>Display box test 🌌</p>
-</div>
-
-  <div class="rotating-text">
-    <span>     Welcome to xNeonCatGirlx's profile!</span>
-    <span>             Feel free to look around</span>
-    <span>          Currently flying on Volanta</span>
-    <span>        Adding support for flight tracking</span>
+    <p>This is a beautiful Hyprland-style info box. 🌌<br>You can change this text in the HTML.</p>
   </div>
 
+  <!-- Rotating Top Text -->
+  <div class="rotating-text">
+    <span>Welcome to xNeonCatGirlx's profile!</span>
+    <span>Feel free to look around</span>
+    <span>Currently flying on Volanta</span>
+    <span>Adding support for flight tracking</span>
+  </div>
 
+  <!-- Background -->
   <iframe src="Background/index.html" id="background-iframe"></iframe>
 
+  <!-- Counter -->
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
       height="60" width="300" 
       title="Moe Counter"
-      id="moe-counter"
-    >
+      id="moe-counter">
     </iframe>
   </div>
 
+  <!-- Footer Links -->
   <div class="bottom-right-links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
 
+  <!-- Konami Code Script -->
   <script>
-
     const konamiCode = [
       'ArrowUp',
       'ArrowUp',
@@ -177,14 +186,9 @@
 
     document.addEventListener('keydown', (event) => {
       inputSequence.push(event.key);
-      
-      
-      if (inputSequence.length > konamiCode.length) {
-        inputSequence.shift();
-      }
+      if (inputSequence.length > konamiCode.length) inputSequence.shift();
 
       if (inputSequence.join(',') === konamiCode.join(',')) {
-        // Change the iframe src on Konami code detected
         const counterIframe = document.getElementById('moe-counter');
         counterIframe.src = "https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=gelbooru-h&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto";
       }
