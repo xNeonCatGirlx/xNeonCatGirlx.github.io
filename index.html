@@ -9,6 +9,22 @@
 
   <style>
 
+    .purple-info-box {
+      background: rgba(128, 0, 128, 0.2); /* transparent purple */
+      border: 1px solid rgba(200, 100, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 16px 24px;
+      max-width: 500px;
+      margin: 20px auto;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
+      text-align: center;
+    }
+
     #background-iframe {
       position: fixed;  /* fixed position */
       top: 0;
@@ -114,6 +130,11 @@
   </style>
 </head>
 <body>
+
+  <div class="purple-info-box">
+  <p>Display box test 🌌</p>
+</div>
+
   <div class="rotating-text">
     <span>     Welcome to xNeonCatGirlx's profile!</span>
     <span>             Feel free to look around</span>
