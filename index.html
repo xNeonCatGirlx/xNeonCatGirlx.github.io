@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>xNeonCatGirlx</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
 
   <!-- Preload Fonts -->
@@ -16,11 +16,14 @@
     html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      /* allow scrolling on mobile */
+      overflow-y: auto;
       font-family: 'Open Sans', sans-serif;
       color: white;
       background: transparent;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
     }
 
     #background-iframe {
@@ -35,10 +38,9 @@
     }
 
     .center-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
+      margin: 2rem auto;
+      max-width: 90vw;
       text-align: center;
       z-index: 10;
     }
@@ -49,13 +51,16 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-radius: 16px;
-      padding: 24px 32px;
+      padding: 24px 20px;
       max-width: 600px;
+      margin: 0 auto;
       color: white;
-      font-size: 1.2rem;
+      font-size: 1rem;
       box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
       font-weight: normal;
       font-family: 'Open Sans', sans-serif;
+      word-wrap: break-word;
+      line-height: 1.4;
     }
 
     .rotating-text-container {
@@ -63,7 +68,8 @@
       top: 10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
+      max-width: 90vw;
+      width: 100%;
       text-align: center;
       font-family: 'Open Sans', sans-serif;
       height: 3rem;
@@ -78,9 +84,10 @@
       opacity: 0;
       transform: translateY(100%);
       animation: rotateWord 16s ease-in-out infinite;
-      font-size: 2rem;
+      font-size: 1.5rem;
       left: 0;
       top: 0;
+      white-space: nowrap;
     }
 
     .rotating-text span:nth-child(1) { animation-delay: 0s; }
@@ -115,6 +122,7 @@
     .bottom-right-links {
       bottom: 10px;
       right: 10px;
+      white-space: nowrap;
     }
 
     .language-selector a,
@@ -123,6 +131,8 @@
       text-decoration: none;
       margin: 0 4px;
       cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
     .language-selector a:hover,
@@ -137,14 +147,41 @@
       transform: translateX(-50%);
       background-color: transparent;
       z-index: 900;
+      width: 90vw;
+      max-width: 320px;
+      text-align: center;
     }
 
-    iframe {
+    .counter-container iframe {
       border: none;
-      transform: scale(1.8);
-      transform-origin: center;
+      width: 100%;
+      height: 60px;
       display: block;
+      /* Remove transform scale for mobile */
+      transform: none;
+      transform-origin: center;
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .purple-info-box {
+        font-size: 0.9rem;
+        padding: 16px 12px;
+        max-width: 95vw;
+      }
+      .rotating-text span {
+        font-size: 1.2rem;
+      }
+      .language-selector, .bottom-right-links {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
+      .counter-container {
+        bottom: 40px;
+        max-width: 90vw;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -155,32 +192,32 @@
   </div>
 
   <!-- Language Switch -->
-  <div class="language-selector">
-    <a onclick="switchLang('en')">EN</a> |
-    <a onclick="switchLang('zh')">中文</a> |
-    <a onclick="switchLang('ja')">日本語</a>
+  <div class="language-selector" role="navigation" aria-label="Language selector">
+    <a role="button" tabindex="0" onclick="switchLang('en')">EN</a> |
+    <a role="button" tabindex="0" onclick="switchLang('zh')">中文</a> |
+    <a role="button" tabindex="0" onclick="switchLang('ja')">日本語</a>
   </div>
 
   <!-- Main Centered Info Box -->
   <div class="center-wrapper">
-    <div class="purple-info-box" id="info-box"></div>
+    <div class="purple-info-box" id="info-box" aria-live="polite"></div>
   </div>
 
   <!-- Background -->
-  <iframe src="Background/index.html" id="background-iframe"></iframe>
+  <iframe src="Background/index.html" id="background-iframe" aria-hidden="true" tabindex="-1"></iframe>
 
   <!-- Counter -->
   <div class="counter-container">
     <iframe 
       src="https://count.getloli.com/@xneoncatgirlx?name=xneoncatgirlx&theme=rule34&padding=7&offset=0&align=top&scale=1.5&pixelated=1&darkmode=auto" 
-      height="60" width="300" 
       title="Moe Counter"
       id="moe-counter"
+      loading="lazy"
     ></iframe>
   </div>
 
   <!-- GitHub & Moe Counter links -->
-  <div class="bottom-right-links">
+  <div class="bottom-right-links" role="navigation" aria-label="External links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
   </div>
