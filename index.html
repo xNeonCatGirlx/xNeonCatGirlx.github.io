@@ -5,12 +5,12 @@
   <title>xNeonCatGirlx</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
-  
+
   <!-- Open Sans for general -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" />
   <!-- Noto Sans JP for Japanese -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
-  
+
   <style>
     html, body {
       margin: 0;
@@ -168,7 +168,7 @@
   <!-- Main Centered Info Box -->
   <div class="center-wrapper">
     <div class="purple-info-box" id="info-box">
-      <p>Display box test </p>
+      <p>Display box test</p>
     </div>
   </div>
 
@@ -211,45 +211,52 @@
 
     function switchLang(lang) {
       const infoBox = document.getElementById('info-box');
+
       if (lang === 'en') {
         infoBox.style.fontFamily = "'Open Sans', sans-serif";
-        infoBox.innerHTML = "<p>Computer Specs<br>"
-        "GPU:Radeon RX 6950XT FE @2.8GHz 1100mV<br>" +
-        "CPU:Ryzen 5 5600 OC 4.8GHz@1.3625V<br>" +
-        "MB:ASUS ROG Strix X570i<br>" +
-        "RAM:16GBX2 Asguard DDR4 3800Mhz OC<br>" +
-        "Timings:18-21-21-21-42 Trfc 520 Trc 65<br>" +
-        "Keyboard:RK R87<br>" +
-        "Mouse:DragonflyF1 Pro 4000Hz Polling Rate<br>" +
-        "DPI:800X0.68<br>" +
-        "Screen 1:16:10 2560x1600 240Hz</p>";
-        "Screen 2 16:10 2560x1600 144Hz</p>";
+        infoBox.innerHTML = `
+          <p>Computer Specs<br>
+          GPU: Radeon RX 6950XT FE @2.8GHz 1100mV<br>
+          CPU: Ryzen 5 5600 OC 4.8GHz @1.3625V<br>
+          MB: ASUS ROG Strix X570i<br>
+          RAM: 16GBX2 Asguard DDR4 3800MHz OC<br>
+          Timings: 18-21-21-21-42 Trfc 520 Trc 65<br>
+          Keyboard: RK R87<br>
+          Mouse: Dragonfly F1 Pro 4000Hz Polling Rate<br>
+          DPI: 800x0.68<br>
+          Screen 1: 16:10 2560x1600 240Hz<br>
+          Screen 2: 16:10 2560x1600 144Hz</p>
+        `;
       } else if (lang === 'zh') {
         infoBox.style.fontFamily = "'Open Sans', sans-serif";
-        infoBox.innerHTML = "<p>电脑配置<br>" +
-        "显卡:Radeon RX 6950XT FE @2.8GHz 1100mV<br>" +
-        "CPU:Ryzen 5 5600 OC 4.8GHz@1.3625V<br>" +
-        "主板:华硕ROG Strix X570i<br>" +
-        "内存:16GBX2 阿斯加特 DDR4 3800Mhz OC<br>" +
-        "时序:18-21-21-21-42 Trfc 520 Trc 65<br>" +
-        "键盘:RK R87<br>" +
-        "鼠标:蜻蜓F1 Pro 4000Hz回报率<br>" +
-        "DPI:800X0.68<br>" +
-        "屏幕:16:10 2560x1600 240Hz刷新率</p>";
-        "副屏:16:10 2560x1600 144Hz刷新率</p>";
+        infoBox.innerHTML = `
+          <p>电脑配置<br>
+          显卡: Radeon RX 6950XT FE @2.8GHz 1100mV<br>
+          CPU: Ryzen 5 5600 OC 4.8GHz @1.3625V<br>
+          主板: 华硕 ROG Strix X570i<br>
+          内存: 16GBX2 阿斯加特 DDR4 3800MHz OC<br>
+          时序: 18-21-21-21-42 Trfc 520 Trc 65<br>
+          键盘: RK R87<br>
+          鼠标: 蜻蜓 F1 Pro 4000Hz 回报率<br>
+          DPI: 800x0.68<br>
+          主屏: 16:10 2560x1600 240Hz<br>
+          副屏: 16:10 2560x1600 144Hz</p>
+        `;
       } else if (lang === 'ja') {
         infoBox.style.fontFamily = "'Noto Sans JP', sans-serif";
-        infoBox.innerHTML = "<p>コンピュータの構成<br>" 
-        "GPU:Radeon RX 6950XT FE @2.8GHz 1100mV<br>」"+
-        "CPU:Ryzen 5 5600 OC 4.8GHz@1.3625V<br>」"+
-        "マザーボード:ASUS ROG Strix X570i<br>」"+
-        "RAM:16GB×2 Asguard DDR4 3800Mhz OC<br>」"+
-        "タイミング:18-21-21-21-42 Trfc 520 Trc 65<br>」"+
-        "キーボード:RK R87<br>」"+
-        "マウス:DragonflyF1 Pro 4000Hz ポーリングレート<br>」"+
-        "DPI:800x0.68<br>」"+
-        "画面 1:16:10 2560x1600 240Hz</p>";
-        "画面2 16:10 2560x1600 144Hz</p>";
+        infoBox.innerHTML = `
+          <p>コンピュータの構成<br>
+          GPU: Radeon RX 6950XT FE @2.8GHz 1100mV<br>
+          CPU: Ryzen 5 5600 OC 4.8GHz @1.3625V<br>
+          マザーボード: ASUS ROG Strix X570i<br>
+          メモリ: 16GBx2 Asguard DDR4 3800MHz OC<br>
+          タイミング: 18-21-21-21-42 Trfc 520 Trc 65<br>
+          キーボード: RK R87<br>
+          マウス: Dragonfly F1 Pro 4000Hz ポーリングレート<br>
+          DPI: 800x0.68<br>
+          画面 1: 16:10 2560x1600 240Hz<br>
+          画面 2: 16:10 2560x1600 144Hz</p>
+        `;
       }
     }
   </script>
