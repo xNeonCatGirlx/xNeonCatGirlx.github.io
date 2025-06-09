@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/xNeonCatGirlx/xNeonCatGirlx.github.io/main/web.ico" />
 
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"></noscript>
+  <!-- Preload Fonts -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"></noscript>
 
-    <!-- Preload Open Sans -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style" onload="this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"></noscript>
   <style>
     html, body {
       margin: 0;
@@ -151,12 +151,7 @@
 
   <!-- Rotating Text -->
   <div class="rotating-text-container">
-    <div class="rotating-text">
-      <span>Welcome to xNeonCatGirlx's profile!</span>
-      <span>Feel free to look around</span>
-      <span>Currently flying on Volanta</span>
-      <span>Adding support for flight tracking</span>
-    </div>
+    <div class="rotating-text" id="rotating-text"></div>
   </div>
 
   <!-- Language Switch -->
@@ -168,9 +163,7 @@
 
   <!-- Main Centered Info Box -->
   <div class="center-wrapper">
-    <div class="purple-info-box" id="info-box">
-      <p>Display box test</p>
-    </div>
+    <div class="purple-info-box" id="info-box"></div>
   </div>
 
   <!-- Background -->
@@ -210,6 +203,17 @@
       }
     });
 
+    function updateRotatingText(textArray) {
+      const container = document.getElementById('rotating-text');
+      container.innerHTML = '';
+      textArray.forEach((text, i) => {
+        const span = document.createElement('span');
+        span.textContent = text;
+        span.style.animationDelay = `${i * 4}s`;
+        container.appendChild(span);
+      });
+    }
+
     function switchLang(lang) {
       const infoBox = document.getElementById('info-box');
 
@@ -228,6 +232,12 @@
           Screen 1: 16:10 2560x1600 240Hz<br>
           Screen 2: 16:10 2560x1600 144Hz</p>
         `;
+        updateRotatingText([
+          "Welcome to xNeonCatGirlx's profile!",
+          "Feel free to look around",
+          "Currently flying on Volanta",
+          "Adding support for flight tracking"
+        ]);
       } else if (lang === 'zh') {
         infoBox.style.fontFamily = "'Open Sans', sans-serif";
         infoBox.innerHTML = `
@@ -243,6 +253,12 @@
           主屏: 16:10 2560x1600 240Hz<br>
           副屏: 16:10 2560x1600 144Hz</p>
         `;
+        updateRotatingText([
+          "欢迎来到 xNeonCatGirlx 的主页！",
+          "随便看看吧",
+          "目前在 Volanta 上飞行",
+          "正在加入飞行追踪的支持"
+        ]);
       } else if (lang === 'ja') {
         infoBox.style.fontFamily = "'Noto Sans JP', sans-serif";
         infoBox.innerHTML = `
@@ -258,8 +274,16 @@
           画面 1: 16:10 2560x1600 240Hz<br>
           画面 2: 16:10 2560x1600 144Hz</p>
         `;
+        updateRotatingText([
+          "xNeonCatGirlxのプロフィールへようこそ!",
+          "自由に見ていってね",
+          "現在Volantaでフライト中",
+          "フライト追跡機能を追加中"
+        ]);
       }
     }
+
+    // Load default language
     switchLang('en');
   </script>
 </body>
