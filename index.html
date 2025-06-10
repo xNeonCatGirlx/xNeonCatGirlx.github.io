@@ -38,7 +38,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, -40%);
       text-align: center;
       z-index: 10;
     }
@@ -56,6 +56,7 @@
       box-shadow: 0 0 20px rgba(128, 0, 128, 0.4);
       font-weight: normal;
       font-family: 'Open Sans', sans-serif;
+      margin-bottom: 20px;
     }
 
     .rotating-text-container {
@@ -145,6 +146,10 @@
       transform-origin: center;
       display: block;
     }
+
+    #steam-box a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -161,8 +166,17 @@
     <a onclick="switchLang('ja')">日本語</a>
   </div>
 
-  <!-- Main Centered Info Box -->
+  <!-- Main Info Area -->
   <div class="center-wrapper">
+    <!-- Steam Info Box -->
+    <div class="purple-info-box" id="steam-box">
+      <a href="https://steamcommunity.com/id/xNeonCatGirlx/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center;">
+        <img src="https://cdn.jsdelivr.net/gh/edent/SuperTinyIcons/images/svg/steam.svg" alt="Steam" style="width: 24px; height: 24px; margin-right: 10px; filter: brightness(0) invert(1);" />
+        <span style="font-size: 1.1rem;">Steam Profile</span>
+      </a>
+    </div>
+
+    <!-- System Info Box -->
     <div class="purple-info-box" id="info-box"></div>
   </div>
 
@@ -283,7 +297,6 @@
       }
     }
 
-    // Load default language
     switchLang('en');
   </script>
 </body>
