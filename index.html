@@ -181,6 +181,43 @@
     #steam-box a:hover {
       text-decoration: underline;
     }
+
+    .audio-player-container {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+    }
+
+    .audio-player-box {
+      background: rgba(128, 0, 128, 0.2);
+      border: 1px solid rgba(200, 100, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .play-button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 5px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-button:hover {
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
@@ -251,6 +288,16 @@
   <div class="bottom-right-links">
     <a href="https://github.com/xNeonCatGirlx" target="_blank" rel="noopener noreferrer">GitHub</a> |
     <a href="https://count.getloli.com" target="_blank" rel="noopener noreferrer">Moe Counter</a>
+  </div>
+
+  <!-- Music Player -->
+  <div class="audio-player-container">
+    <div class="audio-player-box">
+      <button class="play-button" id="playButton">▶</button>
+      <audio id="bgMusic" preload="auto">
+        <source src="music/background.mp3" type="audio/mpeg">
+      </audio>
+    </div>
   </div>
 
   <script>
@@ -352,6 +399,19 @@
     }
 
     switchLang('en');
+
+    const audioPlayer = document.getElementById('bgMusic');
+    const playButton = document.getElementById('playButton');
+    
+    playButton.addEventListener('click', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+        playButton.textContent = '⏸';
+      } else {
+        audioPlayer.pause();
+        playButton.textContent = '▶';
+      }
+    });
   </script>
 </body>
 </html>
