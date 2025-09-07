@@ -38,7 +38,7 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -30%);
+      transform: translate(-50%, -40.5%);  /* Changed from -30% to -35% to move up */
       text-align: center;
       z-index: 10;
     }
@@ -151,8 +151,8 @@
 
     .instatus-container {
       position: fixed;
-      right: 205px;  /* Increased from 150px to move it closer to middle */
-      top: calc(50% - 15.9%);
+      right: 205px;
+      top: calc(50% - 22%);  /* Changed from -15.9% to -22% to move up */
       width: 400px;
       z-index: 900;
     }
@@ -199,24 +199,60 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      width: 240px;
     }
 
     .play-button {
-      background: none;
-      border: none;
+      background: rgba(200, 100, 255, 0.2);
+      border: 1px solid rgba(200, 100, 255, 0.4);
+      border-radius: 50%;
       color: white;
       cursor: pointer;
-      font-size: 1.5rem;
-      padding: 5px;
-      width: 30px;
-      height: 30px;
+      font-size: 1.2rem;
+      padding: 0;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.2s ease;
     }
 
     .play-button:hover {
+      background: rgba(200, 100, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .album-art {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    .song-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .song-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-artist {
+      font-size: 0.75rem;
       opacity: 0.8;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   </style>
 </head>
@@ -294,6 +330,11 @@
   <div class="audio-player-container">
     <div class="audio-player-box">
       <button class="play-button" id="playButton">▶</button>
+      <img src="https://github.com/xNeonCatGirlx/xNeonCatGirlx.github.io/blob/main/ab67616d0000b2735c24aa3ff8689efd936add42.jpeg?raw=true" alt="Album Art" class="album-art">
+      <div class="song-info">
+        <p class="song-title">Are you lost</p>
+        <p class="song-artist">Park Bird</p>
+      </div>
       <audio id="bgMusic" preload="auto" autoplay muted loop>
         <source src="https://github.com/xNeonCatGirlx/xNeonCatGirlx.github.io/raw/refs/heads/main/Are%20You%20Lost.mp3" type="audio/mpeg">
       </audio>
@@ -401,29 +442,39 @@
     switchLang('en');
 
     // Audio player setup with autoplay
-    const audioPlayer = document.getElementById('bgMusic');
-    const playButton = document.getElementById('playButton');
-    
-    // Try to autoplay with unmuting
-    window.addEventListener('load', () => {
+    window.addEventListener('DOMContentLoaded', () => {
+      const audioPlayer = document.getElementById('bgMusic');
+      const playButton = document.getElementById('playButton');
+      
+      // Initial state
       audioPlayer.muted = false;
-      audioPlayer.play().then(() => {
-        playButton.textContent = '⏸';
-      }).catch(e => {
-        console.log('Autoplay prevented:', e);
-        playButton.textContent = '▶';
-      });
-    });
-    
-    // Regular play/pause handler
-    playButton.addEventListener('click', () => {
-      if (audioPlayer.paused) {
-        audioPlayer.play();
-        playButton.textContent = '⏸';
-      } else {
-        audioPlayer.pause();
-        playButton.textContent = '▶';
+      playButton.innerHTML = '<span style="transform: translateX(1px)">▶</span>';
+      
+      // Try autoplay
+      const playPromise = audioPlayer.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          playButton.innerHTML = '⏸';
+        }).catch(() => {
+          audioPlayer.play().then(() => {
+            playButton.innerHTML = '⏸';
+          }).catch(e => {
+            console.log('Autoplay prevented:', e);
+            playButton.innerHTML = '<span style="transform: translateX(1px)">▶</span>';
+          });
+        });
       }
+      
+      // Click handler
+      playButton.addEventListener('click', () => {
+        if (audioPlayer.paused) {
+          audioPlayer.play();
+          playButton.innerHTML = '⏸';
+        } else {
+          audioPlayer.pause();
+          playButton.innerHTML = '<span style="transform: translateX(1px)">▶</span>';
+        }
+      });
     });
   </script>
 </body>
