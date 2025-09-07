@@ -59,6 +59,10 @@
       margin: 12px auto;
     }
 
+    #leetify-box {
+      margin-bottom: 20px;
+    }
+
     #steam-box {
       margin-bottom: 20px;
     }
@@ -120,6 +124,7 @@
     .bottom-right-links {
       bottom: 10px;
       right: 10px;
+      margin-left: 320px; /* Add space for the counter */
     }
 
     .language-selector a,
@@ -137,11 +142,32 @@
 
     .counter-container {
       position: fixed;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
+      bottom: 10px;
+      left: 10px;
+      transform: none;
       background-color: transparent;
       z-index: 900;
+    }
+
+    .instatus-container {
+      position: fixed;
+      right: 205px;  /* Increased from 150px to move it closer to middle */
+      top: calc(50% - 15.9%);
+      width: 400px;
+      z-index: 900;
+    }
+
+    .instatus-container .purple-info-box {
+      padding: 12px 20px;
+      margin: 0;
+      height: 481.5px; /* Fixed height to match the combined height of all boxes */
+      max-width: none;
+    }
+
+    .instatus-container iframe {
+      width: 100%;
+      height: 100%;
+      transform: scale(1);
     }
 
     iframe {
@@ -172,6 +198,14 @@
 
   <!-- Main Info Area -->
   <div class="center-wrapper">
+    <!-- Leetify Info Box -->
+    <div class="purple-info-box" id="leetify-box">
+      <a href="https://leetify.com/@xneoncatgirlx" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center;">
+        <img src="https://leetify.com/assets/images/leetify-logo-primary-white.svg" alt="Leetify" style="width: 80px; height: 24px; margin-right: 10px;" />
+        <span style="font-size: 1.1rem;">xNeonCatGirlx</span>
+      </a>
+    </div>
+
     <!-- Steam Info Box -->
     <div class="purple-info-box" id="steam-box">
       <a href="https://steamcommunity.com/id/xNeonCatGirlx/" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: white; display: flex; align-items: center; justify-content: center;">
@@ -200,7 +234,17 @@
     </div>
   </div>
 
-
+  <!-- Instatus Monitor -->
+  <div class="instatus-container">
+    <div class="purple-info-box">
+      <iframe 
+        src="https://xneoncatgirlx.instatus.com/"
+        frameborder="0"
+        scrolling="no"
+        style="width: 100%; height: 100%;"
+      ></iframe>
+    </div>
+  </div>
 
   <!-- GitHub & Moe Counter links -->
   <div class="bottom-right-links">
@@ -253,7 +297,7 @@
           Mouse: Dragonfly F1 Pro 4000Hz Polling Rate<br>
           DPI: 800x0.68<br>
           Screen 1: 16:10 2560x1600 240Hz<br>
-          Screen 2: 16:10 2560x1600 144Hz</p>
+          Screen 2: 16:10 2560x1600 165Hz</p>
         `;
         updateRotatingText([
           "Welcome to xNeonCatGirlx's profile!",
@@ -274,7 +318,7 @@
           鼠标: 蜻蜓 F1 Pro 4000Hz 回报率<br>
           DPI: 800x0.68<br>
           主屏: 16:10 2560x1600 240Hz<br>
-          副屏: 16:10 2560x1600 144Hz</p>
+          副屏: 16:10 2560x1600 165Hz</p>
         `;
         updateRotatingText([
           "欢迎来到 xNeonCatGirlx 的主页！",
@@ -295,7 +339,7 @@
           マウス: Dragonfly F1 Pro 4000Hz ポーリングレート<br>
           DPI: 800x0.68<br>
           画面 1: 16:10 2560x1600 240Hz<br>
-          画面 2: 16:10 2560x1600 144Hz</p>
+          画面 2: 16:10 2560x1600 165Hz</p>
         `;
         updateRotatingText([
           "xNeonCatGirlxのプロフィールへようこそ！",
@@ -309,4 +353,5 @@
     switchLang('en');
   </script>
 </body>
+</html>
 </html>
